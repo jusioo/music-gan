@@ -107,7 +107,7 @@ def main():
         filenames = args.input_dir.glob("*.mid")
 
     for filename in filenames:
-        print(f"Processing {filename}")
+        print("Processing {}".format(filename))
         multitrack = Multitrack(filename)
         downbeat = multitrack.downbeat
 
@@ -171,7 +171,7 @@ def main():
 
         count_total_segments += len(song_ok_segments)
         print(
-            f"current: {count_ok_segment} | cumulative: {count_total_segments}"
+            "current: {} | cumulative: {}".format(count_ok_segment, count_total_segments)
         )
 
     print("-" * 30)
@@ -193,7 +193,7 @@ def main():
         compiled_list.append(pianoroll_compiled.astype(bool))
 
     result = np.concatenate(compiled_list, axis=0)
-    print(f"output shape: {result.shape}")
+    print("output shape: {}".format(result.shape))
     if args.outfile.endswith(".npz"):
         np.savez_compressed(
             args.outfile,
@@ -202,7 +202,7 @@ def main():
         )
     else:
         np.save(args.outfile, result)
-    print(f"Successfully saved training data to : {args.outfile}")
+    print("Successfully saved training data to : {}".format(args.outfile))
 
 
 if __name__ == "__main__":
